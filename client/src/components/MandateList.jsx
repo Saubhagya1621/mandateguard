@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchMandates } from "../lib/api";
+import MetricsBar from "./MetricsBar";
 
 const STATUS_STYLES = {
   active: "bg-mint/20 text-mint",
@@ -51,6 +52,8 @@ function MandateList({ onSelectMandate }) {
           Refresh
         </button>
       </div>
+
+      <MetricsBar />
 
       {mandates.length === 0 ? (
         <p className="text-text-muted">No mandates found.</p>

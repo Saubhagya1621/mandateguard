@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchMandateById } from "../lib/api";
+import AuditLogView from "./AuditLogView";
 
 const STATUS_STYLES = {
   active: "bg-mint/20 text-mint",
@@ -67,11 +68,18 @@ function MandateDetail({ mandateId, onBack }) {
       <div className="bg-plum-light rounded-xl p-5 grid grid-cols-2 gap-4 border border-magenta/10">
         <DetailField label="Merchant ID" value={mandate.merchantId} />
         <DetailField label="Amount" value={`₹${mandate.amount}`} />
-        <DetailField label="Failure Reason" value={mandate.failureReason || "—"} />
+        <DetailField
+          label="Failure Reason"
+          value={mandate.failureReason || "—"}
+        />
         <DetailField label="Retry Count" value={mandate.retryCount} />
         <DetailField
           label="Next Retry At"
-          value={mandate.nextRetryAt ? new Date(mandate.nextRetryAt).toLocaleString() : "—"}
+          value={
+            mandate.nextRetryAt
+              ? new Date(mandate.nextRetryAt).toLocaleString()
+              : "—"
+          }
         />
         <DetailField
           label="Mandate Expires At"
@@ -86,6 +94,11 @@ function MandateDetail({ mandateId, onBack }) {
           value={new Date(mandate.updatedAt).toLocaleString()}
         />
       </div>
+
+      <div className="mt-8">
+        <h2 className="text-lg font-semibold text-text mb-4">Audit Trail</h2>
+        <AuditLogView mandateId={mandate.mandateId} />
+      </div>
     </div>
   );
 }
@@ -93,7 +106,9 @@ function MandateDetail({ mandateId, onBack }) {
 function DetailField({ label, value }) {
   return (
     <div>
-      <p className="text-xs text-text-muted uppercase tracking-wide mb-1">{label}</p>
+      <p className="text-xs text-text-muted uppercase tracking-wide mb-1">
+        {label}
+      </p>
       <p className="text-text font-medium">{value}</p>
     </div>
   );

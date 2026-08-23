@@ -22,4 +22,11 @@ async function fetchAuditLogs(mandateId) {
   }
   return res.json();
 }
-export { fetchMandates, fetchMandateById, fetchAuditLogs };
+async function fetchMetrics() {
+  const res = await fetch(`${API_BASE}/mandates/metrics/summary`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch metrics");
+  }
+  return res.json();
+}
+export { fetchMandates, fetchMandateById, fetchAuditLogs, fetchMetrics };

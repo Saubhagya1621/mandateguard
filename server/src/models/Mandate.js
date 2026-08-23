@@ -48,6 +48,14 @@ const mandateSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    pendingAiSuggested: {
+      type: Boolean,
+      default: false,
+    },
+    pendingAiFallback: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

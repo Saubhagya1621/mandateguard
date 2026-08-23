@@ -4,6 +4,10 @@ import RetryAttempt from "../models/RetryAttempt.js";
 import AuditLog from "../models/AuditLog.js";
 import { checkRetryEligibility } from "../rules-engine/retryEligibility.js";
 import { simulateRetryOutcome } from "../services/retryExecutor.js";
+import {
+  suggestRetryTiming,
+  generateAuditNote,
+} from "../services/aiService.js";
 
 async function processDueMandates() {
   const now = new Date();
@@ -44,7 +48,12 @@ async function processSingleMandate(mandate, now) {
     executedAt: now,
     outcome,
     failureReason,
-    complianceWindow: { start: mandate.nextRetryAt, end: mandate.mandateExpiresAt },
+    complianceWindow: {
+      start: mandate.nextRetryAt,
+      end: mandate.mandateExpiresAt,
+    },
+    aiSuggested: mandate.pendingAiSuggested,
+    aiFallbackUsed: mandate.pendingAiFallback,
   });
 
   await AuditLog.create({
@@ -58,6 +67,8 @@ async function processSingleMandate(mandate, now) {
   if (outcome === "success") {
     mandate.status = "recovered";
     mandate.nextRetryAt = null;
+    mandate.pendingAiSuggested = false;
+    mandate.pendingAiFallback = false;
     await mandate.save();
     return;
   }
@@ -72,10 +83,58 @@ async function processSingleMandate(mandate, now) {
 
   if (eligibility.eligible) {
     mandate.status = "retrying";
-    mandate.nextRetryAt = eligibility.window.start;
+
+    const aiSuggestedTime = await suggestRetryTiming({
+      windowStart: eligibility.window.start.toISOString(),
+      windowEnd: eligibility.window.end.toISOString(),
+      failureReason: failureReason || mandate.failureReason,
+      retryCount: mandate.retryCount,
+    });
+
+    const withinWindow =
+      aiSuggestedTime &&
+      aiSuggestedTime >= eligibility.window.start &&
+      aiSuggestedTime <= eligibility.window.end;
+
+    let finalTime;
+    let fallbackUsed = false;
+
+    if (withinWindow) {
+      finalTime = aiSuggestedTime;
+    } else {
+      finalTime = eligibility.window.start;
+      fallbackUsed = true;
+
+      if (aiSuggestedTime) {
+        await AuditLog.create({
+          mandateId: mandate.mandateId,
+          action: "ai_fallback_triggered",
+          details: `AI suggested ${aiSuggestedTime.toISOString()}, which falls outside the compliance window. Falling back to window start.`,
+        });
+      }
+    }
+
+    mandate.nextRetryAt = finalTime;
+    mandate.pendingAiSuggested = !fallbackUsed;
+    mandate.pendingAiFallback = fallbackUsed;
+
+    const auditNote = await generateAuditNote({
+      chosenTime: finalTime,
+      failureReason: failureReason || mandate.failureReason,
+      wasAiSuggested: !fallbackUsed,
+    });
+
+    await AuditLog.create({
+      mandateId: mandate.mandateId,
+      action: "ai_suggestion_generated",
+      details: auditNote,
+      metadata: { aiSuggestedTime, finalTime, fallbackUsed },
+    });
   } else {
     mandate.status = "blocked";
     mandate.nextRetryAt = null;
+    mandate.pendingAiSuggested = false;
+    mandate.pendingAiFallback = false;
 
     await AuditLog.create({
       mandateId: mandate.mandateId,

@@ -32,18 +32,24 @@ function MandateList({ onSelectMandate }) {
 
   useEffect(() => {
     loadMandates();
+
+    const interval = setInterval(() => {
+      loadMandates(true);
+    }, 15000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  async function loadMandates() {
+  async function loadMandates(silent = false) {
     try {
-      setLoading(true);
+      if (!silent) setLoading(true);
       const data = await fetchMandates();
       setMandates(data.mandates);
       setError(null);
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   }
 
@@ -72,7 +78,7 @@ function MandateList({ onSelectMandate }) {
           Mandates
         </h2>
         <button
-          onClick={loadMandates}
+          onClick={() => loadMandates()}
           className="text-xs font-mono uppercase tracking-wider text-ink-muted border border-line rounded px-3 py-2 hover:border-ink hover:text-ink transition"
         >
           Refresh

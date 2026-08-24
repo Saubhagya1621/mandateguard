@@ -1,0 +1,622 @@
+[
+  {
+    "mandateId": "SYN-001",
+    "merchantId": "MERCH-03",
+    "amount": 199,
+    "failureReason": "account_frozen",
+    "mandateExpiresAt": "2026-09-29T00:00:00Z",
+    "failureTimestamp": "2026-08-25T04:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-002",
+    "merchantId": "MERCH-01",
+    "amount": 1999,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-12T00:00:00Z",
+    "failureTimestamp": "2026-08-27T01:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-003",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-11-01T00:00:00Z",
+    "failureTimestamp": "2026-08-28T00:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-004",
+    "merchantId": "MERCH-04",
+    "amount": 1999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-09-26T00:00:00Z",
+    "failureTimestamp": "2026-08-27T18:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-005",
+    "merchantId": "MERCH-02",
+    "amount": 199,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-10-22T00:00:00Z",
+    "failureTimestamp": "2026-08-26T08:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-006",
+    "merchantId": "MERCH-01",
+    "amount": 799,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-09T00:00:00Z",
+    "failureTimestamp": "2026-08-27T03:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-007",
+    "merchantId": "MERCH-05",
+    "amount": 799,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-10-01T00:00:00Z",
+    "failureTimestamp": "2026-08-24T23:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-008",
+    "merchantId": "MERCH-04",
+    "amount": 299,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-09-08T00:00:00Z",
+    "failureTimestamp": "2026-08-28T09:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-009",
+    "merchantId": "MERCH-05",
+    "amount": 799,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-09-22T00:00:00Z",
+    "failureTimestamp": "2026-08-29T02:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-010",
+    "merchantId": "MERCH-03",
+    "amount": 499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-08T00:00:00Z",
+    "failureTimestamp": "2026-08-25T03:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-011",
+    "merchantId": "MERCH-03",
+    "amount": 1499,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-09-18T00:00:00Z",
+    "failureTimestamp": "2026-08-26T11:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-012",
+    "merchantId": "MERCH-01",
+    "amount": 599,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-11-14T00:00:00Z",
+    "failureTimestamp": "2026-08-29T05:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-013",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-10-27T00:00:00Z",
+    "failureTimestamp": "2026-08-27T08:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-014",
+    "merchantId": "MERCH-02",
+    "amount": 1999,
+    "failureReason": "other",
+    "mandateExpiresAt": "2026-10-09T00:00:00Z",
+    "failureTimestamp": "2026-08-24T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-015",
+    "merchantId": "MERCH-04",
+    "amount": 799,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-10-02T00:00:00Z",
+    "failureTimestamp": "2026-08-24T06:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-016",
+    "merchantId": "MERCH-02",
+    "amount": 799,
+    "failureReason": "other",
+    "mandateExpiresAt": "2026-11-20T00:00:00Z",
+    "failureTimestamp": "2026-08-27T12:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-017",
+    "merchantId": "MERCH-02",
+    "amount": 1499,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-10-01T00:00:00Z",
+    "failureTimestamp": "2026-08-25T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-018",
+    "merchantId": "MERCH-03",
+    "amount": 1999,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-11T00:00:00Z",
+    "failureTimestamp": "2026-08-27T18:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-019",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-11-02T00:00:00Z",
+    "failureTimestamp": "2026-08-27T02:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-020",
+    "merchantId": "MERCH-02",
+    "amount": 299,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-17T00:00:00Z",
+    "failureTimestamp": "2026-08-25T21:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-021",
+    "merchantId": "MERCH-04",
+    "amount": 299,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-10-16T00:00:00Z",
+    "failureTimestamp": "2026-08-28T14:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-022",
+    "merchantId": "MERCH-01",
+    "amount": 1999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-09-12T00:00:00Z",
+    "failureTimestamp": "2026-08-29T17:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-023",
+    "merchantId": "MERCH-01",
+    "amount": 799,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-10-05T00:00:00Z",
+    "failureTimestamp": "2026-08-27T05:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-024",
+    "merchantId": "MERCH-05",
+    "amount": 599,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-09-20T00:00:00Z",
+    "failureTimestamp": "2026-08-28T03:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-025",
+    "merchantId": "MERCH-05",
+    "amount": 599,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-14T00:00:00Z",
+    "failureTimestamp": "2026-08-25T04:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-026",
+    "merchantId": "MERCH-05",
+    "amount": 399,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-11-04T00:00:00Z",
+    "failureTimestamp": "2026-08-24T19:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-027",
+    "merchantId": "MERCH-01",
+    "amount": 199,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-10-14T00:00:00Z",
+    "failureTimestamp": "2026-08-26T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-028",
+    "merchantId": "MERCH-01",
+    "amount": 299,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-10-30T00:00:00Z",
+    "failureTimestamp": "2026-08-24T17:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-029",
+    "merchantId": "MERCH-04",
+    "amount": 399,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-07T00:00:00Z",
+    "failureTimestamp": "2026-08-25T08:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-030",
+    "merchantId": "MERCH-02",
+    "amount": 999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-11-06T00:00:00Z",
+    "failureTimestamp": "2026-08-29T22:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-031",
+    "merchantId": "MERCH-04",
+    "amount": 599,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-11-22T00:00:00Z",
+    "failureTimestamp": "2026-08-29T11:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-032",
+    "merchantId": "MERCH-04",
+    "amount": 1999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-09-13T00:00:00Z",
+    "failureTimestamp": "2026-08-25T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-033",
+    "merchantId": "MERCH-05",
+    "amount": 199,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-11-07T00:00:00Z",
+    "failureTimestamp": "2026-08-25T18:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-034",
+    "merchantId": "MERCH-01",
+    "amount": 299,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-27T00:00:00Z",
+    "failureTimestamp": "2026-08-24T01:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-035",
+    "merchantId": "MERCH-05",
+    "amount": 299,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-09-28T00:00:00Z",
+    "failureTimestamp": "2026-08-26T21:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-036",
+    "merchantId": "MERCH-02",
+    "amount": 1999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-11-10T00:00:00Z",
+    "failureTimestamp": "2026-08-28T15:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-037",
+    "merchantId": "MERCH-04",
+    "amount": 1499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-22T00:00:00Z",
+    "failureTimestamp": "2026-08-24T03:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-038",
+    "merchantId": "MERCH-04",
+    "amount": 799,
+    "failureReason": "account_frozen",
+    "mandateExpiresAt": "2026-10-20T00:00:00Z",
+    "failureTimestamp": "2026-08-27T23:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-039",
+    "merchantId": "MERCH-01",
+    "amount": 299,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-10-19T00:00:00Z",
+    "failureTimestamp": "2026-08-29T10:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-040",
+    "merchantId": "MERCH-02",
+    "amount": 299,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-09-22T00:00:00Z",
+    "failureTimestamp": "2026-08-25T17:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-041",
+    "merchantId": "MERCH-02",
+    "amount": 999,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-10-03T00:00:00Z",
+    "failureTimestamp": "2026-08-27T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-042",
+    "merchantId": "MERCH-04",
+    "amount": 299,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-11-07T00:00:00Z",
+    "failureTimestamp": "2026-08-24T01:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-043",
+    "merchantId": "MERCH-01",
+    "amount": 1999,
+    "failureReason": "account_frozen",
+    "mandateExpiresAt": "2026-09-09T00:00:00Z",
+    "failureTimestamp": "2026-08-25T05:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-044",
+    "merchantId": "MERCH-02",
+    "amount": 1499,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-10-19T00:00:00Z",
+    "failureTimestamp": "2026-08-24T05:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-045",
+    "merchantId": "MERCH-03",
+    "amount": 999,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-10-26T00:00:00Z",
+    "failureTimestamp": "2026-08-26T13:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-046",
+    "merchantId": "MERCH-04",
+    "amount": 1999,
+    "failureReason": "account_frozen",
+    "mandateExpiresAt": "2026-09-17T00:00:00Z",
+    "failureTimestamp": "2026-08-25T09:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-047",
+    "merchantId": "MERCH-05",
+    "amount": 199,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-11-06T00:00:00Z",
+    "failureTimestamp": "2026-08-24T23:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-048",
+    "merchantId": "MERCH-05",
+    "amount": 199,
+    "failureReason": "mandate_expired",
+    "mandateExpiresAt": "2026-10-29T00:00:00Z",
+    "failureTimestamp": "2026-08-28T16:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-049",
+    "merchantId": "MERCH-01",
+    "amount": 1999,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-21T00:00:00Z",
+    "failureTimestamp": "2026-08-24T19:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-050",
+    "merchantId": "MERCH-04",
+    "amount": 499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-09-13T00:00:00Z",
+    "failureTimestamp": "2026-08-28T07:00:00Z",
+    "retryHistory": []
+  },
+  {
+    "mandateId": "SYN-051",
+    "merchantId": "MERCH-05",
+    "amount": 299,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-10-23T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [
+      {
+        "attempt": 1,
+        "outcome": "failed",
+        "reason": "insufficient_funds"
+      },
+      {
+        "attempt": 2,
+        "outcome": "failed",
+        "reason": "insufficient_funds"
+      },
+      {
+        "attempt": 3,
+        "outcome": "failed",
+        "reason": "insufficient_funds"
+      }
+    ],
+    "note": "Edge case: already at max retry attempts, should be blocked"
+  },
+  {
+    "mandateId": "SYN-052",
+    "merchantId": "MERCH-05",
+    "amount": 999,
+    "failureReason": "other",
+    "mandateExpiresAt": "2026-10-23T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [
+      {
+        "attempt": 1,
+        "outcome": "failed",
+        "reason": "other"
+      },
+      {
+        "attempt": 2,
+        "outcome": "failed",
+        "reason": "other"
+      }
+    ],
+    "note": "Edge case: already at max retry attempts, should be blocked"
+  },
+  {
+    "mandateId": "SYN-053",
+    "merchantId": "MERCH-03",
+    "amount": 299,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-10-23T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [
+      {
+        "attempt": 1,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      },
+      {
+        "attempt": 2,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      },
+      {
+        "attempt": 3,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      }
+    ],
+    "note": "Edge case: already at max retry attempts, should be blocked"
+  },
+  {
+    "mandateId": "SYN-054",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "daily_limit_hit",
+    "mandateExpiresAt": "2026-10-23T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [
+      {
+        "attempt": 1,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      },
+      {
+        "attempt": 2,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      },
+      {
+        "attempt": 3,
+        "outcome": "failed",
+        "reason": "daily_limit_hit"
+      }
+    ],
+    "note": "Edge case: already at max retry attempts, should be blocked"
+  },
+  {
+    "mandateId": "SYN-055",
+    "merchantId": "MERCH-02",
+    "amount": 999,
+    "failureReason": "other",
+    "mandateExpiresAt": "2026-10-23T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [
+      {
+        "attempt": 1,
+        "outcome": "failed",
+        "reason": "other"
+      },
+      {
+        "attempt": 2,
+        "outcome": "failed",
+        "reason": "other"
+      }
+    ],
+    "note": "Edge case: already at max retry attempts, should be blocked"
+  },
+  {
+    "mandateId": "SYN-056",
+    "merchantId": "MERCH-04",
+    "amount": 499,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-08-25T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [],
+    "note": "Edge case: mandate expires before mandatory gap-day window opens"
+  },
+  {
+    "mandateId": "SYN-057",
+    "merchantId": "MERCH-01",
+    "amount": 499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-08-25T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [],
+    "note": "Edge case: mandate expires before mandatory gap-day window opens"
+  },
+  {
+    "mandateId": "SYN-058",
+    "merchantId": "MERCH-01",
+    "amount": 299,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-08-25T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [],
+    "note": "Edge case: mandate expires before mandatory gap-day window opens"
+  },
+  {
+    "mandateId": "SYN-059",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "bank_server_timeout",
+    "mandateExpiresAt": "2026-08-25T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [],
+    "note": "Edge case: mandate expires before mandatory gap-day window opens"
+  },
+  {
+    "mandateId": "SYN-060",
+    "merchantId": "MERCH-02",
+    "amount": 499,
+    "failureReason": "insufficient_funds",
+    "mandateExpiresAt": "2026-08-25T00:00:00Z",
+    "failureTimestamp": "2026-08-24T00:00:00Z",
+    "retryHistory": [],
+    "note": "Edge case: mandate expires before mandatory gap-day window opens"
+  }
+]

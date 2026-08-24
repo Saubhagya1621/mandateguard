@@ -1,5 +1,5 @@
 const RETRY_RULES = {
-  insufficient_funds: { maxAttempts: 3, gapDays: 3 },
+  insufficient_funds: { maxAttempts: 3, gapDays: 1 },
   mandate_expired: { maxAttempts: 0, gapDays: null },
   bank_server_timeout: { maxAttempts: 3, gapDays: 1 },
   account_frozen: { maxAttempts: 0, gapDays: null },

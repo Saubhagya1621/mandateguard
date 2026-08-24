@@ -76,6 +76,9 @@ This will appear in an audit log for a compliance officer. No preamble, just the
 
   try {
     const note = await callGroq([{ role: "user", content: prompt }]);
+    if (!note || note.trim().length === 0) {
+      return `Retry scheduled for ${chosenTime.toISOString()}. (AI returned an empty response.)`;
+    }
     return note;
   } catch (error) {
     console.error("AI audit note generation failed:", error.message);

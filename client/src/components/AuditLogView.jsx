@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchAuditLogs } from "../lib/api";
 
-const ACTION_STYLES = {
-  failure_ingested: "border-danger/40",
-  compliance_checked: "border-mint/40",
-  ai_suggestion_generated: "border-magenta/40",
-  ai_fallback_triggered: "border-danger/40",
-  retry_scheduled: "border-mint/40",
-  retry_executed: "border-magenta/40",
-  mandate_expired: "border-text-muted/40",
-  mandate_blocked: "border-danger/40",
+const ACTION_COLORS = {
+  failure_ingested: "bg-oxide",
+  compliance_checked: "bg-forest",
+  ai_suggestion_generated: "bg-ink",
+  ai_fallback_triggered: "bg-ochre",
+  retry_scheduled: "bg-forest",
+  retry_executed: "bg-ink",
+  mandate_expired: "bg-ink-muted",
+  mandate_blocked: "bg-oxide",
 };
 
 function AuditLogView({ mandateId }) {
@@ -35,37 +35,41 @@ function AuditLogView({ mandateId }) {
   }
 
   if (loading) {
-    return <div className="text-text-muted text-sm">Loading audit trail...</div>;
+    return <div className="text-ink-muted font-mono text-sm">Loading audit trail...</div>;
   }
 
   if (error) {
-    return <div className="text-danger text-sm">Error: {error}</div>;
+    return <div className="text-oxide font-mono text-sm">Error: {error}</div>;
   }
 
   if (logs.length === 0) {
-    return <div className="text-text-muted text-sm">No audit log entries yet.</div>;
+    return <div className="text-ink-muted font-mono text-sm">No entries recorded yet.</div>;
   }
 
   return (
-    <div className="space-y-3">
-      {logs.map((log) => (
-        <div
-          key={log._id}
-          className={`bg-plum-light rounded-lg p-4 border-l-4 ${
-            ACTION_STYLES[log.action] || "border-text-muted/40"
-          }`}
-        >
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-semibold uppercase text-text-muted tracking-wide">
-              {log.action.replace(/_/g, " ")}
-            </span>
-            <span className="text-xs text-text-muted">
-              {new Date(log.createdAt).toLocaleString()}
-            </span>
+    <div className="relative pl-6">
+      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-line" />
+
+      <div className="space-y-6">
+        {logs.map((log) => (
+          <div key={log._id} className="relative">
+            <div
+              className={`absolute -left-6 top-1 w-3.5 h-3.5 rounded-full border-2 border-card ${
+                ACTION_COLORS[log.action] || "bg-ink-muted"
+              }`}
+            />
+            <div className="flex items-baseline justify-between mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-ink-muted">
+                {log.action.replace(/_/g, " ")}
+              </span>
+              <span className="text-[11px] font-mono text-ink-muted">
+                {new Date(log.createdAt).toLocaleString()}
+              </span>
+            </div>
+            <p className="text-sm text-ink leading-relaxed">{log.details}</p>
           </div>
-          <p className="text-text text-sm">{log.details}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

@@ -19,30 +19,30 @@ function MetricsBar() {
     }
   }
 
-  if (error) {
-    return null;
-  }
-
-  if (!metrics) {
+  if (error || !metrics) {
     return null;
   }
 
   return (
-    <div className="grid grid-cols-5 gap-3 mb-6">
-      <StatCard label="Total Mandates" value={metrics.total} accent="text-text" />
-      <StatCard label="Recovery Rate" value={metrics.recoveryRate} accent="text-mint" />
-      <StatCard label="Recovered" value={metrics.recovered} accent="text-mint" />
-      <StatCard label="Blocked" value={metrics.blocked} accent="text-danger" />
-      <StatCard label="Retrying" value={metrics.retrying} accent="text-magenta" />
+    <div className="border border-line rounded-lg bg-card overflow-hidden">
+      <div className="grid grid-cols-5 divide-x divide-line">
+        <Stat label="Total" value={metrics.total} accent="text-ink" />
+        <Stat label="Recovery Rate" value={metrics.recoveryRate} accent="text-forest" />
+        <Stat label="Recovered" value={metrics.recovered} accent="text-forest" />
+        <Stat label="Blocked" value={metrics.blocked} accent="text-oxide" />
+        <Stat label="Retrying" value={metrics.retrying} accent="text-ochre" />
+      </div>
     </div>
   );
 }
 
-function StatCard({ label, value, accent }) {
+function Stat({ label, value, accent }) {
   return (
-    <div className="bg-plum-light rounded-xl p-4 border border-magenta/10">
-      <p className="text-xs text-text-muted uppercase tracking-wide mb-1">{label}</p>
-      <p className={`text-2xl font-bold ${accent}`}>{value}</p>
+    <div className="px-5 py-4">
+      <p className="text-[11px] font-mono uppercase tracking-wider text-ink-muted mb-1.5">
+        {label}
+      </p>
+      <p className={`font-display text-2xl font-semibold ${accent}`}>{value}</p>
     </div>
   );
 }

@@ -3,12 +3,12 @@ import { fetchMandateById } from "../lib/api";
 import AuditLogView from "./AuditLogView";
 
 const STATUS_STYLES = {
-  active: "bg-mint/20 text-mint",
-  retrying: "bg-magenta/20 text-magenta",
-  recovered: "bg-mint/20 text-mint",
-  blocked: "bg-danger/20 text-danger",
-  expired: "bg-text-muted/20 text-text-muted",
-  failed: "bg-danger/20 text-danger",
+  active: "text-forest border-forest",
+  retrying: "text-ochre border-ochre",
+  recovered: "text-forest border-forest",
+  blocked: "text-oxide border-oxide",
+  expired: "text-ink-muted border-ink-muted",
+  failed: "text-oxide border-oxide",
 };
 
 function MandateDetail({ mandateId, onBack }) {
@@ -34,11 +34,11 @@ function MandateDetail({ mandateId, onBack }) {
   }
 
   if (loading) {
-    return <div className="text-text-muted p-6">Loading mandate...</div>;
+    return <div className="text-ink-muted font-mono text-sm">Loading entry...</div>;
   }
 
   if (error) {
-    return <div className="text-danger p-6">Error: {error}</div>;
+    return <div className="text-oxide font-mono text-sm">Error: {error}</div>;
   }
 
   if (!mandate) {
@@ -46,70 +46,55 @@ function MandateDetail({ mandateId, onBack }) {
   }
 
   return (
-    <div className="p-6">
+    <div>
       <button
         onClick={onBack}
-        className="text-mint mb-6 hover:underline text-sm"
+        className="text-xs font-mono uppercase tracking-wider text-ink-muted hover:text-ink transition mb-8 inline-flex items-center gap-1"
       >
-        ← Back to Mandates
+        ← Back to ledger
       </button>
 
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-text">{mandate.mandateId}</h1>
+      <div className="flex items-baseline justify-between mb-8">
+        <h2 className="font-display text-3xl font-semibold text-ink">{mandate.mandateId}</h2>
         <span
-          className={`px-3 py-1 rounded-full text-xs font-semibold uppercase ${
-            STATUS_STYLES[mandate.status] || "bg-text-muted/20 text-text-muted"
+          className={`inline-block px-2.5 py-1 border-2 rounded font-mono text-[11px] font-semibold uppercase tracking-wider -rotate-2 ${
+            STATUS_STYLES[mandate.status] || "text-ink-muted border-ink-muted"
           }`}
         >
           {mandate.status}
         </span>
       </div>
 
-      <div className="bg-plum-light rounded-xl p-5 grid grid-cols-2 gap-4 border border-magenta/10">
-        <DetailField label="Merchant ID" value={mandate.merchantId} />
-        <DetailField label="Amount" value={`₹${mandate.amount}`} />
-        <DetailField
-          label="Failure Reason"
-          value={mandate.failureReason || "—"}
-        />
-        <DetailField label="Retry Count" value={mandate.retryCount} />
-        <DetailField
-          label="Next Retry At"
-          value={
-            mandate.nextRetryAt
-              ? new Date(mandate.nextRetryAt).toLocaleString()
-              : "—"
-          }
-        />
-        <DetailField
-          label="Mandate Expires At"
-          value={new Date(mandate.mandateExpiresAt).toLocaleString()}
-        />
-        <DetailField
-          label="Created At"
-          value={new Date(mandate.createdAt).toLocaleString()}
-        />
-        <DetailField
-          label="Last Updated"
-          value={new Date(mandate.updatedAt).toLocaleString()}
-        />
+      <div className="border border-line rounded-lg bg-card overflow-hidden mb-10">
+        <div className="grid grid-cols-2 divide-x divide-line">
+          <div className="divide-y divide-line">
+            <Field label="Merchant ID" value={mandate.merchantId} />
+            <Field label="Failure Reason" value={mandate.failureReason?.replace(/_/g, " ") || "—"} />
+            <Field label="Next Retry At" value={mandate.nextRetryAt ? new Date(mandate.nextRetryAt).toLocaleString() : "—"} />
+            <Field label="Created At" value={new Date(mandate.createdAt).toLocaleString()} />
+          </div>
+          <div className="divide-y divide-line">
+            <Field label="Amount" value={`₹${mandate.amount}`} />
+            <Field label="Retry Count" value={mandate.retryCount} />
+            <Field label="Mandate Expires At" value={new Date(mandate.mandateExpiresAt).toLocaleString()} />
+            <Field label="Last Updated" value={new Date(mandate.updatedAt).toLocaleString()} />
+          </div>
+        </div>
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold text-text mb-4">Audit Trail</h2>
+      <div>
+        <h3 className="font-display text-xl font-semibold text-ink mb-5">Audit Trail</h3>
         <AuditLogView mandateId={mandate.mandateId} />
       </div>
     </div>
   );
 }
 
-function DetailField({ label, value }) {
+function Field({ label, value }) {
   return (
-    <div>
-      <p className="text-xs text-text-muted uppercase tracking-wide mb-1">
-        {label}
-      </p>
-      <p className="text-text font-medium">{value}</p>
+    <div className="px-5 py-3.5">
+      <p className="text-[11px] font-mono uppercase tracking-wider text-ink-muted mb-1">{label}</p>
+      <p className="font-mono text-sm text-ink">{value}</p>
     </div>
   );
 }

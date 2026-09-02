@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchMandates } from "../lib/api";
 import MetricsBar from "./MetricsBar";
 import StateMessage from "./StateMessage";
+import SimulateFailureForm from "./SimulateFailureForm";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -55,11 +56,23 @@ function MandateList({ onSelectMandate }) {
   }
 
   if (loading) {
-    return <StateMessage type="loading" title="Loading ledger" subtitle="Fetching the latest mandate records." />;
+    return (
+      <StateMessage
+        type="loading"
+        title="Loading ledger"
+        subtitle="Fetching the latest mandate records."
+      />
+    );
   }
 
   if (error) {
-    return <StateMessage type="error" title="Could not load ledger" subtitle={error} />;
+    return (
+      <StateMessage
+        type="error"
+        title="Could not load ledger"
+        subtitle={error}
+      />
+    );
   }
   const filteredMandates = mandates.filter((m) => {
     const matchesStatus = statusFilter === "all" || m.status === statusFilter;
@@ -76,12 +89,15 @@ function MandateList({ onSelectMandate }) {
         <h2 className="font-display text-3xl font-semibold text-ink">
           Mandates
         </h2>
-        <button
-          onClick={() => loadMandates()}
-          className="text-xs font-mono uppercase tracking-wider text-ink-muted border border-line rounded px-3 py-2 hover:border-ink hover:text-ink transition"
-        >
-          Refresh
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => loadMandates()}
+            className="text-xs font-mono uppercase tracking-wider text-ink-muted border border-line rounded px-3 py-2 hover:border-ink hover:text-ink transition"
+          >
+            Refresh
+          </button>
+          <SimulateFailureForm onSuccess={() => loadMandates()} />
+        </div>
       </div>
 
       <MetricsBar />

@@ -8,6 +8,7 @@ import {
   suggestRetryTiming,
   generateAuditNote,
 } from "../services/aiService.js";
+import { emitMandateUpdate } from "../socket.js"; 
 
 async function processDueMandates() {
   const now = new Date();
@@ -35,6 +36,7 @@ async function processSingleMandate(mandate, now) {
       details: "Mandate expired before scheduled retry could execute.",
     });
 
+    emitMandateUpdate(mandate.mandateId);
     return;
   }
 
@@ -70,6 +72,7 @@ async function processSingleMandate(mandate, now) {
     mandate.pendingAiSuggested = false;
     mandate.pendingAiFallback = false;
     await mandate.save();
+    emitMandateUpdate(mandate.mandateId);
     return;
   }
 
@@ -143,7 +146,8 @@ async function processSingleMandate(mandate, now) {
     });
   }
 
-  await mandate.save();
+    await mandate.save();
+  emitMandateUpdate(mandate.mandateId);
 }
 
 function startRetryScheduler() {

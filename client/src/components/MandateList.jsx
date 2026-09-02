@@ -3,6 +3,7 @@ import { fetchMandates } from "../lib/api";
 import MetricsBar from "./MetricsBar";
 import StateMessage from "./StateMessage";
 import SimulateFailureForm from "./SimulateFailureForm";
+import socket from "../lib/socket";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -35,11 +36,15 @@ function MandateList({ onSelectMandate }) {
   useEffect(() => {
     loadMandates();
 
-    const interval = setInterval(() => {
+    function handleUpdate() {
       loadMandates(true);
-    }, 15000);
+    }
 
-    return () => clearInterval(interval);
+    socket.on("mandate_updated", handleUpdate);
+
+    return () => {
+      socket.off("mandate_updated", handleUpdate);
+    };
   }, []);
 
   async function loadMandates(silent = false) {

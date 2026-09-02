@@ -1,6 +1,7 @@
 import Mandate from "../models/Mandate.js";
 import AuditLog from "../models/AuditLog.js";
 import { checkRetryEligibility } from "../rules-engine/retryEligibility.js";
+import { emitMandateUpdate } from "../socket.js";
 
 async function ingestFailureEvent(req, res, next) {
   try {
@@ -57,7 +58,7 @@ async function ingestFailureEvent(req, res, next) {
         : eligibility.reason,
       metadata: eligibility,
     });
-
+    emitMandateUpdate(mandateId);
     res.status(201).json({ mandate, eligibility });
   } catch (error) {
     next(error);

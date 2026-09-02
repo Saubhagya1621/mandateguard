@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAuditLogs } from "../lib/api";
+import StateMessage from "./StateMessage";
 
 const ACTION_COLORS = {
   failure_ingested: "bg-oxide",
@@ -35,20 +36,26 @@ function AuditLogView({ mandateId }) {
   }
 
   if (loading) {
-    return <div className="text-ink-muted font-mono text-sm">Loading audit trail...</div>;
+    return <StateMessage type="loading" title="Loading audit trail" subtitle="Reconstructing the decision history." />;
   }
 
   if (error) {
-    return <div className="text-oxide font-mono text-sm">Error: {error}</div>;
+    return <StateMessage type="error" title="Could not load audit trail" subtitle={error} />;
   }
 
   if (logs.length === 0) {
-    return <div className="text-ink-muted font-mono text-sm">No entries recorded yet.</div>;
+    return (
+      <StateMessage
+        type="empty"
+        title="No entries recorded yet"
+        subtitle="Actions taken on this mandate will appear here as they happen."
+      />
+    );
   }
 
   return (
     <div className="relative pl-6">
-      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-line" />
+      <div className="absolute left-1.75 top-2 bottom-2 w-px bg-line" />
 
       <div className="space-y-6">
         {logs.map((log) => (

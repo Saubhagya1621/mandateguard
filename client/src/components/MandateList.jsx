@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMandates } from "../lib/api";
 import MetricsBar from "./MetricsBar";
+import StateMessage from "./StateMessage";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -54,13 +55,11 @@ function MandateList({ onSelectMandate }) {
   }
 
   if (loading) {
-    return (
-      <div className="text-ink-muted font-mono text-sm">Loading ledger...</div>
-    );
+    return <StateMessage type="loading" title="Loading ledger" subtitle="Fetching the latest mandate records." />;
   }
 
   if (error) {
-    return <div className="text-oxide font-mono text-sm">Error: {error}</div>;
+    return <StateMessage type="error" title="Could not load ledger" subtitle={error} />;
   }
   const filteredMandates = mandates.filter((m) => {
     const matchesStatus = statusFilter === "all" || m.status === statusFilter;
@@ -110,9 +109,11 @@ function MandateList({ onSelectMandate }) {
       </div>
 
       {filteredMandates.length === 0 ? (
-        <p className="text-ink-muted font-mono text-sm mt-8">
-          No entries in the ledger.
-        </p>
+        <StateMessage
+          type="empty"
+          title="No entries in the ledger"
+          subtitle="Ingest a failure event to begin tracking a mandate."
+        />
       ) : (
         <div className="mt-8 border border-line rounded-lg overflow-hidden bg-card">
           <div className="grid grid-cols-[1.2fr_1fr_1fr_0.8fr_1fr] gap-4 px-5 py-3 border-b border-line bg-paper">

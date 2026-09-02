@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMandateById } from "../lib/api";
 import AuditLogView from "./AuditLogView";
+import StateMessage from "./StateMessage";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -34,11 +35,11 @@ function MandateDetail({ mandateId, onBack }) {
   }
 
   if (loading) {
-    return <div className="text-ink-muted font-mono text-sm">Loading entry...</div>;
+    return <StateMessage type="loading" title="Loading entry" subtitle="Fetching this mandate's record." />;
   }
 
   if (error) {
-    return <div className="text-oxide font-mono text-sm">Error: {error}</div>;
+    return <StateMessage type="error" title="Could not load entry" subtitle={error} />;
   }
 
   if (!mandate) {

@@ -16,6 +16,17 @@
   --font-sans: "Inter", sans-serif;
 }
 
+.dark {
+  --color-paper: #1C1B19;
+  --color-card: #262523;
+  --color-ink: #EDEAE3;
+  --color-ink-muted: #9C9891;
+  --color-line: #3A3835;
+  --color-forest: #6FA377;
+  --color-oxide: #D97862;
+  --color-ochre: #D9A84E;
+}
+
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);

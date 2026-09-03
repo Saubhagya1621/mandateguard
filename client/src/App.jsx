@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MandateList from "./components/MandateList";
 import MandateDetail from "./components/MandateDetail";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   const [selectedMandateId, setSelectedMandateId] = useState(null);
@@ -17,6 +18,7 @@ function App() {
               Compliance-first retry ledger
             </p>
           </div>
+          <ThemeToggle />
         </div>
       </header>
 

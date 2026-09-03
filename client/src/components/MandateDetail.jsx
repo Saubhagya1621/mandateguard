@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchMandateById } from "../lib/api";
+import { fetchMandateById, fetchAuditLogs } from "../lib/api";
 import AuditLogView from "./AuditLogView";
+import MandateTimeline from "./MandateTimeline";
 import StateMessage from "./StateMessage";
 
 const STATUS_STYLES = {
@@ -14,18 +15,23 @@ const STATUS_STYLES = {
 
 function MandateDetail({ mandateId, onBack }) {
   const [mandate, setMandate] = useState(null);
+  const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    loadMandate();
+    loadData();
   }, [mandateId]);
 
-  async function loadMandate() {
+  async function loadData() {
     try {
       setLoading(true);
-      const data = await fetchMandateById(mandateId);
-      setMandate(data.mandate);
+      const [mandateData, logsData] = await Promise.all([
+        fetchMandateById(mandateId),
+        fetchAuditLogs(mandateId),
+      ]);
+      setMandate(mandateData.mandate);
+      setLogs(logsData.logs);
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -66,6 +72,8 @@ function MandateDetail({ mandateId, onBack }) {
         </span>
       </div>
 
+      <MandateTimeline logs={logs} />
+
       <div className="border border-line rounded-lg bg-card overflow-hidden mb-10">
         <div className="grid grid-cols-2 divide-x divide-line">
           <div className="divide-y divide-line">
@@ -85,7 +93,7 @@ function MandateDetail({ mandateId, onBack }) {
 
       <div>
         <h3 className="font-display text-xl font-semibold text-ink mb-5">Audit Trail</h3>
-        <AuditLogView mandateId={mandate.mandateId} />
+        <AuditLogView logs={logs} />
       </div>
     </div>
   );

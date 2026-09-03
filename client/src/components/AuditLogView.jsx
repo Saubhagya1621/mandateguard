@@ -13,44 +13,9 @@ const ACTION_COLORS = {
   mandate_blocked: "bg-oxide",
 };
 
-function AuditLogView({ mandateId }) {
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    loadLogs();
-  }, [mandateId]);
-
-  async function loadLogs() {
-    try {
-      setLoading(true);
-      const data = await fetchAuditLogs(mandateId);
-      setLogs(data.logs);
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  if (loading) {
-    return <StateMessage type="loading" title="Loading audit trail" subtitle="Reconstructing the decision history." />;
-  }
-
-  if (error) {
-    return <StateMessage type="error" title="Could not load audit trail" subtitle={error} />;
-  }
-
-  if (logs.length === 0) {
-    return (
-      <StateMessage
-        type="empty"
-        title="No entries recorded yet"
-        subtitle="Actions taken on this mandate will appear here as they happen."
-      />
-    );
+function AuditLogView({ logs }) {
+  if (!logs || logs.length === 0) {
+    return null;
   }
 
   return (

@@ -5,6 +5,7 @@ import StateMessage from "./StateMessage";
 import SimulateFailureForm from "./SimulateFailureForm";
 import socket from "../lib/socket";
 import SnapshotTrend from "./SnapshotTrend";
+import ProximityRow from "./ui/ProximityRow";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -28,6 +29,7 @@ function StampBadge({ status }) {
 }
 
 function MandateList({ onSelectMandate }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [mandates, setMandates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -163,29 +165,26 @@ function MandateList({ onSelectMandate }) {
           {filteredMandates.map((m, i) => (
             <div
               key={m._id}
-              onClick={() => onSelectMandate(m.mandateId)}
-              className={`grid grid-cols-[1.2fr_1fr_1fr_0.8fr_1fr] gap-4 px-5 py-4 items-center cursor-pointer hover:bg-paper transition ${
-                i !== filteredMandates.length - 1 ? "border-b border-line" : ""
-              }`}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className={i !== filteredMandates.length - 1 ? "border-b border-line" : ""}
             >
-              <div>
-                <p className="font-mono font-semibold text-ink text-sm">
-                  {m.mandateId}
-                </p>
-                <p className="font-mono text-xs text-ink-muted mt-0.5">
-                  ₹{m.amount}
-                </p>
-              </div>
-              <p className="font-mono text-sm text-ink-muted">{m.merchantId}</p>
-              <p className="text-sm text-ink-muted">
-                {m.failureReason?.replace(/_/g, " ") || "—"}
-              </p>
-              <p className="font-mono text-sm text-ink text-right">
-                {m.retryCount}
-              </p>
-              <div className="text-right">
-                <StampBadge status={m.status} />
-              </div>
+              <ProximityRow
+                onClick={() => onSelectMandate(m.mandateId)}
+                isHovered={hoveredIndex === i}
+                distance={hoveredIndex === null ? 999 : Math.abs(hoveredIndex - i)}
+              >
+                <div>
+                  <p className="font-mono font-semibold text-ink text-sm">{m.mandateId}</p>
+                  <p className="font-mono text-xs text-ink-muted mt-0.5">₹{m.amount}</p>
+                </div>
+                <p className="font-mono text-sm text-ink-muted">{m.merchantId}</p>
+                <p className="text-sm text-ink-muted">{m.failureReason?.replace(/_/g, " ") || "—"}</p>
+                <p className="font-mono text-sm text-ink text-right">{m.retryCount}</p>
+                <div className="text-right">
+                  <StampBadge status={m.status} />
+                </div>
+              </ProximityRow>
             </div>
           ))}
         </div>

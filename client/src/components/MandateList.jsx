@@ -4,6 +4,7 @@ import MetricsBar from "./MetricsBar";
 import StateMessage from "./StateMessage";
 import SimulateFailureForm from "./SimulateFailureForm";
 import socket from "../lib/socket";
+import SnapshotTrend from "./SnapshotTrend";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -106,6 +107,10 @@ function MandateList({ onSelectMandate }) {
       </div>
 
       <MetricsBar />
+
+      <div className="mt-4">
+        <SnapshotTrend />
+      </div>
 
       <div className="flex items-center gap-3 mt-8 mb-4">
         <input

@@ -44,4 +44,32 @@ async function ingestFailure(payload) {
 
   return data;
 }
-export { fetchMandates, fetchMandateById, fetchAuditLogs, fetchMetrics, ingestFailure };
+
+async function createSnapshot(label) {
+  const res = await fetch(`${API_BASE}/mandates/metrics/snapshot`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ label }),
+  });
+  if (!res.ok) {
+    throw new Error("Failed to create snapshot");
+  }
+  return res.json();
+}
+
+async function fetchSnapshots() {
+  const res = await fetch(`${API_BASE}/mandates/metrics/snapshots`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch snapshots");
+  }
+  return res.json();
+}
+export {
+  fetchMandates,
+  fetchMandateById,
+  fetchAuditLogs,
+  fetchMetrics,
+  ingestFailure,
+  createSnapshot,
+  fetchSnapshots,
+};

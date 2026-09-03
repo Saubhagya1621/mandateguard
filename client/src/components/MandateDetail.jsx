@@ -100,7 +100,7 @@ function MandateDetail({ mandateId, onBack }) {
 
       <div>
         <h3 className="font-display text-xl font-semibold text-ink mb-5">Audit Trail</h3>
-        <AuditLogView logs={logs} />
+        <AuditLogView logs={logs} mandateId={mandate.mandateId} />
       </div>
     </div>
   );

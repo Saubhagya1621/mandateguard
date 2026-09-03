@@ -3,6 +3,7 @@ import { fetchMandateById, fetchAuditLogs } from "../lib/api";
 import AuditLogView from "./AuditLogView";
 import MandateTimeline from "./MandateTimeline";
 import StateMessage from "./StateMessage";
+import ComplianceWindowBar from "./ComplianceWindowBar";
 
 const STATUS_STYLES = {
   active: "text-forest border-forest",
@@ -73,6 +74,12 @@ function MandateDetail({ mandateId, onBack }) {
       </div>
 
       <MandateTimeline logs={logs} />
+
+      <ComplianceWindowBar
+        createdAt={mandate.createdAt}
+        nextRetryAt={mandate.nextRetryAt}
+        mandateExpiresAt={mandate.mandateExpiresAt}
+      />
 
       <div className="border border-line rounded-lg bg-card overflow-hidden mb-10">
         <div className="grid grid-cols-2 divide-x divide-line">

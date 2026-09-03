@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ingestFailure } from "../lib/api";
+import ExpandingButton from "./ui/ExpandingButton";
 
 const FAILURE_REASONS = [
   "insufficient_funds",
@@ -58,12 +59,9 @@ function SimulateFailureForm({ onSuccess }) {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="text-xs font-mono uppercase tracking-wider text-card bg-ink border border-ink rounded px-3 py-2 hover:opacity-90 transition"
-      >
-        + Simulate Failure
-      </button>
+      <ExpandingButton onClick={() => setIsOpen(true)}>
+        Simulate Failure
+      </ExpandingButton>
     );
   }
 

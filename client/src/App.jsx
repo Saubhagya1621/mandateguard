@@ -6,6 +6,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import OverviewPage from "./components/OverviewPage";
 import AuditLogPage from "./components/AuditLogPage";
 import SnapshotTrend from "./components/SnapshotTrend";
+import CompliancePage from "./components/CompliancePage";
 
 function App() {
   const [activeSection, setActiveSection] = useState("overview");
@@ -61,7 +62,7 @@ function App() {
     }
 
     if (activeSection === "rules") {
-      return <div className="text-ink-muted font-mono text-sm">Compliance Rules — coming next.</div>;
+      return <CompliancePage />;
     }
 
     return null;

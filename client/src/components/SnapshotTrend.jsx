@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { createSnapshot, fetchSnapshots } from "../lib/api";
 
-function SnapshotTrend() {
+function SnapshotTrend({ forceOpen = false }) {
   const [snapshots, setSnapshots] = useState([]);
   const [labelInput, setLabelInput] = useState("");
   const [saving, setSaving] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(forceOpen);
 
   useEffect(() => {
     if (isOpen) {
@@ -46,16 +46,20 @@ function SnapshotTrend() {
     );
   }
 
+  const showCloseButton = !forceOpen;
+
   return (
     <div className="border border-line rounded-lg bg-card p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-display text-lg font-semibold text-ink">Recovery Rate Trend</h3>
-        <button
-          onClick={() => setIsOpen(false)}
-          className="text-xs font-mono text-ink-muted hover:text-ink"
-        >
-          Close
-        </button>
+        {showCloseButton && (
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-xs font-mono text-ink-muted hover:text-ink"
+          >
+            Close
+          </button>
+        )}
       </div>
 
       <div className="flex items-center gap-2 mb-5">

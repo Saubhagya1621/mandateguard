@@ -5,6 +5,7 @@ import MandateDetail from "./components/MandateDetail";
 import ThemeToggle from "./components/ThemeToggle";
 import OverviewPage from "./components/OverviewPage";
 import AuditLogPage from "./components/AuditLogPage";
+import SnapshotTrend from "./components/SnapshotTrend";
 
 function App() {
   const [activeSection, setActiveSection] = useState("overview");
@@ -51,7 +52,12 @@ function App() {
     }
 
     if (activeSection === "snapshots") {
-      return <div className="text-ink-muted font-mono text-sm">Snapshots — coming next.</div>;
+      return (
+        <div>
+          <h2 className="font-display text-3xl font-semibold text-ink mb-8">Snapshots</h2>
+          <SnapshotTrend forceOpen />
+        </div>
+      );
     }
 
     if (activeSection === "rules") {

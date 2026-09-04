@@ -1,37 +1,68 @@
 import { useState } from "react";
+import Sidebar from "./components/Sidebar";
 import MandateList from "./components/MandateList";
 import MandateDetail from "./components/MandateDetail";
 import ThemeToggle from "./components/ThemeToggle";
+import OverviewPage from "./components/OverviewPage";
 
 function App() {
+  const [activeSection, setActiveSection] = useState("overview");
   const [selectedMandateId, setSelectedMandateId] = useState(null);
 
-  return (
-    <div className="min-h-screen bg-paper font-sans">
-      <header className="border-b border-line bg-card">
-        <div className="max-w-5xl mx-auto px-8 py-6 flex items-baseline justify-between">
-          <div>
-            <h1 className="font-display text-2xl font-semibold text-ink tracking-tight">
-              MandateGuard
-            </h1>
-            <p className="text-xs text-ink-muted font-mono mt-0.5 uppercase tracking-wider">
-              Compliance-first retry ledger
-            </p>
-          </div>
-          <ThemeToggle />
-        </div>
-      </header>
+  function handleNavigate(section) {
+    setActiveSection(section);
+    setSelectedMandateId(null);
+  }
 
-      <main className="max-w-5xl mx-auto px-8 py-10">
-        {selectedMandateId ? (
+  function renderSection() {
+    if (activeSection === "mandates") {
+      if (selectedMandateId) {
+        return (
           <MandateDetail
             mandateId={selectedMandateId}
             onBack={() => setSelectedMandateId(null)}
           />
-        ) : (
-          <MandateList onSelectMandate={setSelectedMandateId} />
-        )}
-      </main>
+        );
+      }
+      return <MandateList onSelectMandate={setSelectedMandateId} />;
+    }
+
+    if (activeSection === "overview") {
+      return (
+        <OverviewPage
+          onSelectMandate={(id) => {
+            setActiveSection("mandates");
+            setSelectedMandateId(id);
+          }}
+        />
+      );
+    }
+
+    if (activeSection === "audit") {
+      return <div className="text-ink-muted font-mono text-sm">Audit Log — coming next.</div>;
+    }
+
+    if (activeSection === "snapshots") {
+      return <div className="text-ink-muted font-mono text-sm">Snapshots — coming next.</div>;
+    }
+
+    if (activeSection === "rules") {
+      return <div className="text-ink-muted font-mono text-sm">Compliance Rules — coming next.</div>;
+    }
+
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-paper font-sans flex">
+      <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
+
+      <div className="flex-1">
+        <div className="flex justify-end px-8 py-4">
+          <ThemeToggle />
+        </div>
+        <main className="max-w-4xl px-8 pb-10">{renderSection()}</main>
+      </div>
     </div>
   );
 }

@@ -7,10 +7,12 @@ import OverviewPage from "./components/OverviewPage";
 import AuditLogPage from "./components/AuditLogPage";
 import SnapshotTrend from "./components/SnapshotTrend";
 import CompliancePage from "./components/CompliancePage";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const [activeSection, setActiveSection] = useState("overview");
   const [selectedMandateId, setSelectedMandateId] = useState(null);
+  const [hasEntered, setHasEntered] = useState(false);
 
   function handleNavigate(section) {
     setActiveSection(section);
@@ -66,6 +68,10 @@ function App() {
     }
 
     return null;
+  }
+
+  if (!hasEntered) {
+    return <LandingPage onEnter={() => setHasEntered(true)} />;
   }
 
   return (

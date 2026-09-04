@@ -64,6 +64,14 @@ async function fetchSnapshots() {
   }
   return res.json();
 }
+
+async function fetchAllAuditLogs() {
+  const res = await fetch(`${API_BASE}/mandates/audit-logs/all`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch global audit logs");
+  }
+  return res.json();
+}
 export {
   fetchMandates,
   fetchMandateById,
@@ -72,4 +80,5 @@ export {
   ingestFailure,
   createSnapshot,
   fetchSnapshots,
+  fetchAllAuditLogs,
 };

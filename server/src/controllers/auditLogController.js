@@ -11,5 +11,12 @@ async function getAuditLogsForMandate(req, res, next) {
     next(error);
   }
 }
-
-export { getAuditLogsForMandate };
+async function getAllAuditLogs(req, res, next) {
+  try {
+    const logs = await AuditLog.find().sort({ createdAt: -1 }).limit(200);
+    res.status(200).json({ count: logs.length, logs });
+  } catch (error) {
+    next(error);
+  }
+}
+export { getAuditLogsForMandate, getAllAuditLogs };

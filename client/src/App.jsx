@@ -4,6 +4,7 @@ import MandateList from "./components/MandateList";
 import MandateDetail from "./components/MandateDetail";
 import ThemeToggle from "./components/ThemeToggle";
 import OverviewPage from "./components/OverviewPage";
+import AuditLogPage from "./components/AuditLogPage";
 
 function App() {
   const [activeSection, setActiveSection] = useState("overview");
@@ -39,7 +40,14 @@ function App() {
     }
 
     if (activeSection === "audit") {
-      return <div className="text-ink-muted font-mono text-sm">Audit Log — coming next.</div>;
+      return (
+        <AuditLogPage
+          onSelectMandate={(id) => {
+            setActiveSection("mandates");
+            setSelectedMandateId(id);
+          }}
+        />
+      );
     }
 
     if (activeSection === "snapshots") {
